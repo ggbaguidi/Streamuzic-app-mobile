@@ -34,7 +34,15 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Page One"),
+        title: Text(
+          'Paramètres',
+          style: TextStyle(
+            color: Color(0xFFEC0048),
+            fontWeight: FontWeight.bold,
+            fontSize: 20.0,
+          ),
+        ),
+        centerTitle: true,
         actions: [
           Builder(
             builder: (context) => IconButton(
@@ -45,10 +53,53 @@ class Settings extends StatelessWidget {
           ),
         ],
       ),
-      body: const Center(
-        child: Text('Demo: Page Two'),
+      body: Container(
+        color: Color(0xFF222121),
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ListTile(
+              title: Text(
+                'Général',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18.0,
+                ),
+              ),
+              onTap: () {
+                // Code pour ouvrir l'onglet Général
+              },
+            ),
+            // Onglet A propos
+            ListTile(
+              title: Text(
+                'A propos',
+                style: TextStyle(
+                  color: Colors.white, // Texte en blanc
+                  fontSize: 18.0, // Taille de la police
+                ),
+              ),
+              onTap: () {
+                // Code pour ouvrir l'onglet A propos
+              },
+            ),
+            // Onglet Se déconnecter
+            ListTile(
+              title: Text(
+                'Se déconnecter',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18.0,
+                ),
+              ),
+              onTap: () {
+                // Code pour se déconnecter
+              },
+            ),
+          ],
+        ),
       ),
-      endDrawer: const MyDrawerProfile(),
     );
   }
 }
@@ -116,7 +167,10 @@ class MyDrawerProfile extends StatelessWidget {
         children: [
           const Padding(
             padding: EdgeInsets.only(top: 20.0, left: 20.0),
-            child: Text("Mon compte", style: TextStyle(color: buttonColor, fontWeight: FontWeight.bold),),
+            child: Text(
+              "Mon compte",
+              style: TextStyle(color: buttonColor, fontWeight: FontWeight.bold),
+            ),
           ),
           DrawerHeader(
             child: Column(
@@ -130,20 +184,46 @@ class MyDrawerProfile extends StatelessWidget {
                           padding: EdgeInsets.only(left: 10.0),
                           child: Column(
                             children: [
-                              Text("John Doe", style: TextStyle(color: Colors.white, fontSize: 16),),
+                              Text(
+                                "John Doe",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 16),
+                              ),
                               SizedBox(
                                 height: 20.0,
                               ),
                               Row(
                                 children: [
                                   Column(
-                                    children: [Text("3K", style: TextStyle(color: Colors.white, fontSize: 16),), Text("followers", style: TextStyle(color: buttonColor, fontSize: 10),)],
+                                    children: [
+                                      Text(
+                                        "3K",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 16),
+                                      ),
+                                      Text(
+                                        "followers",
+                                        style: TextStyle(
+                                            color: buttonColor, fontSize: 10),
+                                      )
+                                    ],
                                   ),
                                   SizedBox(
                                     width: 10.0,
                                   ),
                                   Column(
-                                    children: [Text("20", style: TextStyle(color: Colors.white, fontSize: 16),), Text("following", style: TextStyle(color: buttonColor, fontSize: 10),)],
+                                    children: [
+                                      Text(
+                                        "20",
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 16),
+                                      ),
+                                      Text(
+                                        "following",
+                                        style: TextStyle(
+                                            color: buttonColor, fontSize: 10),
+                                      )
+                                    ],
                                   )
                                 ],
                               )
@@ -159,7 +239,10 @@ class MyDrawerProfile extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(IconData(0xe800)),
-            title: const Text('Modifier le profil', style: TextStyle(color: Colors.white, fontSize: 16),),
+            title: const Text(
+              'Modifier le profil',
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const UpdateProfil()),
@@ -168,7 +251,10 @@ class MyDrawerProfile extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.library_music),
-            title: const Text('Bibliothèque', style: TextStyle(color: Colors.white, fontSize: 16),),
+            title: const Text(
+              'Bibliothèque',
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const Bibliotheque()),
@@ -177,7 +263,10 @@ class MyDrawerProfile extends StatelessWidget {
           ),
           ListTile(
               leading: const Icon(Icons.settings),
-              title: const Text('Paramètres et confidentialité', style: TextStyle(color: Colors.white, fontSize: 16),),
+              title: const Text(
+                'Paramètres et confidentialité',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const Settings()),
@@ -185,7 +274,10 @@ class MyDrawerProfile extends StatelessWidget {
               }),
           ListTile(
               leading: const Icon(Icons.help),
-              title: const Text('Aide', style: TextStyle(color: Colors.white, fontSize: 16),),
+              title: const Text(
+                'Aide',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ),
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const Help()),
