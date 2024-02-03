@@ -10,7 +10,7 @@ class GetHomePage {
   Future<List<User>> getUsers() async {
     final Map<String, String> query = {
       "page": 0.toString(),
-      "limit": 30.toString()
+      "limit": 10.toString()
     };
     Response res =
         await getResponse(Uri.https(baseUrl, '$basePath/users', query));
@@ -28,7 +28,7 @@ class GetHomePage {
   }
 
   Future<List<SongModel>> getSongs() async {
-    final query = {"limit": 25.toString()};
+    final query = {"limit": 10.toString()};
     final value = await getResponse(Uri.https(
       baseUrl,
       '$basePath/songs/random/all',

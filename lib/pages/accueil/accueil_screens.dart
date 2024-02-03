@@ -169,6 +169,8 @@ class _AccueilHomePage extends State<AccueilHomePage> {
             label: 'Bibliothèque',
           ),
         ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }
