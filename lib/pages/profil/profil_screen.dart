@@ -34,7 +34,7 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Paramètres',
           style: TextStyle(
             color: Color(0xFFEC0048),
@@ -54,13 +54,13 @@ class Settings extends StatelessWidget {
         ],
       ),
       body: Container(
-        color: Color(0xFF222121),
-        padding: EdgeInsets.all(16.0),
+        color: const Color(0xFF222121),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ListTile(
-              title: Text(
+              title: const Text(
                 'Général',
                 style: TextStyle(
                   color: Colors.white,
@@ -73,7 +73,7 @@ class Settings extends StatelessWidget {
             ),
             // Onglet A propos
             ListTile(
-              title: Text(
+              title: const Text(
                 'A propos',
                 style: TextStyle(
                   color: Colors.white, // Texte en blanc
@@ -88,7 +88,7 @@ class Settings extends StatelessWidget {
             ),
             // Onglet Se déconnecter
             ListTile(
-              title: Text(
+              title: const Text(
                 'Se déconnecter',
                 style: TextStyle(
                   color: Colors.white,
@@ -113,7 +113,7 @@ class Help extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Aide Musique',
           style: TextStyle(
             color: Color(0xFFEC0048),
@@ -132,9 +132,9 @@ class Help extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: Color(0xFF222121),
+      backgroundColor: const Color(0xFF222121),
       body: ListView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         children: <Widget>[
           Container(
             alignment: Alignment.topLeft,
@@ -144,8 +144,8 @@ class Help extends StatelessWidget {
               height: 20,
             ),
           ),
-          SizedBox(height: 16.0),
-          Text(
+          const SizedBox(height: 16.0),
+          const Text(
             'Centre d’aide Musik',
             style: TextStyle(
               fontSize: 16.0,
@@ -153,8 +153,8 @@ class Help extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          SizedBox(height: 8.0),
-          Text(
+          const SizedBox(height: 8.0),
+          const Text(
             'En quoi pouvons-nous vous aider ?',
             style: TextStyle(
               fontSize: 15.0,
@@ -162,16 +162,16 @@ class Help extends StatelessWidget {
               backgroundColor: Color(0xFFEC0048),
             ),
           ),
-          SizedBox(height: 8.0),
-          Text(
+          const SizedBox(height: 8.0),
+          const Text(
             'Quelques questions fréquentes',
             style: TextStyle(
               fontSize: 13.0,
               color: Colors.white,
             ),
           ),
-          SizedBox(height: 16.0),
-          ListTile(
+          const SizedBox(height: 16.0),
+          const ListTile(
             title: Text(
               'Comment lire une chanson ?',
               style: TextStyle(
@@ -181,9 +181,9 @@ class Help extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
+          const Padding(
             padding:
-                const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+                EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
             child: Text(
               "Pour écouter une chanson sur notre application, il vous suffit de rechercher le titre, l'artiste ou l'album souhaité dans la barre de recherche. Une fois la chanson trouvée, appuyez simplement sur le bouton de lecture. Vous pouvez également explorer nos playlists recommandées ou créer la vôtre. Profitez de la musique en continu, et n'oubliez pas de consulter les options de personnalisation disponibles pour une expérience encore plus enrichissante.",
               style: TextStyle(
@@ -192,7 +192,7 @@ class Help extends StatelessWidget {
               ),
             ),
           ),
-          ListTile(
+          const ListTile(
             title: Text(
               'Comment créer une playlist ?',
               style: TextStyle(
@@ -202,9 +202,9 @@ class Help extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
+          const Padding(
             padding:
-                const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+                EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
             child: Text(
               "Personnalisez votre expérience musicale en créant vos propres playlists. Accédez à la section <Playlists> de l'application, appuyez sur 'Créer une playlist', donnez-lui un nom et ajoutez vos chansons préférées. Vous pouvez réorganiser l'ordre des chansons et même partager vos playlists avec d'autres utilisateurs. Créez des ambiances uniques pour différentes occasions et découvrez de nouvelles façons de profiter de votre musique préférée.",
               style: TextStyle(
@@ -213,7 +213,7 @@ class Help extends StatelessWidget {
               ),
             ),
           ),
-          ListTile(
+          const ListTile(
             title: Text(
               'Est-ce que je peux partager une musique ?',
               style: TextStyle(
@@ -223,9 +223,9 @@ class Help extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
+          const Padding(
             padding:
-                const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+                EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
             child: Text(
               "Bien sûr ! Partager vos découvertes musicales avec vos amis est simple. Lorsque vous écoutez une chanson que vous aimez, recherchez l'option de partage et choisissez la plateforme de votre choix. Que ce soit par message, e-mail ou sur les réseaux sociaux, propagez la bonne musique et faites découvrir à vos amis de nouveaux morceaux. La musique est faite pour être partagée, et notre application facilite ce processus.",
               style: TextStyle(
@@ -250,8 +250,8 @@ class UpdateProfil extends StatefulWidget {
 
 class _UpdateProfilState extends State<UpdateProfil> {
   String _userName = "John Doe";
-  String _userImageUrl = 'assets/images/user_profil.png';
-  TextEditingController _nameController = TextEditingController();
+  final String _userImageUrl = 'assets/images/user_profil.png';
+  final TextEditingController _nameController = TextEditingController();
 
   @override
   void initState() {
@@ -271,14 +271,14 @@ class _UpdateProfilState extends State<UpdateProfil> {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.save),
+            icon: const Icon(Icons.save),
             onPressed: () {
               _saveProfileChanges();
             },
           ),
         ],
       ),
-      backgroundColor: Color(0xFF222121),
+      backgroundColor: const Color(0xFF222121),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Center(
@@ -294,15 +294,15 @@ class _UpdateProfilState extends State<UpdateProfil> {
                   backgroundImage: AssetImage(_userImageUrl),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     'Name: ',
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Expanded(
                     child: TextField(
                       controller: _nameController,
@@ -310,12 +310,12 @@ class _UpdateProfilState extends State<UpdateProfil> {
                         _userName = value;
                       },
                       enabled: false,
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   IconButton(
-                    icon: Icon(Icons.edit),
+                    icon: const Icon(Icons.edit),
                     onPressed: () {
                       _editName();
                     },
@@ -332,7 +332,7 @@ class _UpdateProfilState extends State<UpdateProfil> {
   // Fonction pour sauvegarder les modifications du profil
   void _saveProfileChanges() {
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Profil mis à jour avec succès!'),
         duration: Duration(seconds: 2),
       ),
@@ -344,27 +344,27 @@ class _UpdateProfilState extends State<UpdateProfil> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(
+          title: const Text(
             'Photo de profil',
             style: TextStyle(
               color: Color(0xFFEC0048),
             ),
           ),
-          backgroundColor: Color(0xFF222121),
+          backgroundColor: const Color(0xFF222121),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               ListTile(
-                leading: Icon(Icons.photo, color: Colors.white),
-                title: Text('Changer la photo',
+                leading: const Icon(Icons.photo, color: Colors.white),
+                title: const Text('Changer la photo',
                     style: TextStyle(fontSize: 13, color: Colors.white)),
                 onTap: () {
                   Navigator.pop(context);
                 },
               ),
               ListTile(
-                leading: Icon(Icons.delete, color: Colors.white),
-                title: Text('Supprimer la photo',
+                leading: const Icon(Icons.delete, color: Colors.white),
+                title: const Text('Supprimer la photo',
                     style: TextStyle(fontSize: 13, color: Colors.white)),
                 onTap: () {
                   Navigator.pop(context);
@@ -382,17 +382,17 @@ class _UpdateProfilState extends State<UpdateProfil> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text(
+          title: const Text(
             'Modifier le nom',
             style: TextStyle(
               color: Color(0xFFEC0048),
             ),
           ),
-          backgroundColor: Color(0xFF222121),
+          backgroundColor: const Color(0xFF222121),
           content: TextField(
             controller: _nameController,
-            style: TextStyle(color: Colors.white),
-            decoration: InputDecoration(
+            style: const TextStyle(color: Colors.white),
+            decoration: const InputDecoration(
               labelText: 'Nouveau nom',
               labelStyle: TextStyle(fontSize: 13, color: Colors.white),
             ),
@@ -402,7 +402,7 @@ class _UpdateProfilState extends State<UpdateProfil> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Annuler',
+              child: const Text('Annuler',
                   style: TextStyle(fontSize: 13, color: Colors.white)),
             ),
             TextButton(
@@ -412,7 +412,7 @@ class _UpdateProfilState extends State<UpdateProfil> {
                 });
                 Navigator.pop(context);
               },
-              child: Text('Enregistrer',
+              child: const Text('Enregistrer',
                   style: TextStyle(fontSize: 13, color: Colors.white)),
             ),
           ],
@@ -429,7 +429,7 @@ class Apropos extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'A propos',
           style: TextStyle(
             color: Color(0xFFEC0048),
@@ -449,12 +449,12 @@ class Apropos extends StatelessWidget {
         ],
       ),
       body: Container(
-        color: Color(0xFF222121),
-        padding: EdgeInsets.all(16.0),
+        color: const Color(0xFF222121),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ListTile(
+            const ListTile(
               title: Text(
                 'Version',
                 style: TextStyle(
@@ -464,7 +464,7 @@ class Apropos extends StatelessWidget {
               ),
             ),
             // Onglet A propos
-            ListTile(
+            const ListTile(
               title: Text(
                 'MUSIK version 1.0',
                 style: TextStyle(
@@ -474,7 +474,7 @@ class Apropos extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: Text(
+              title: const Text(
                 'Termes et Conditions',
                 style: TextStyle(
                   color: Colors.white,
@@ -501,7 +501,7 @@ class Termes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Termes et Conditions',
           style: TextStyle(
             color: Color(0xFFEC0048),
@@ -521,7 +521,7 @@ class Termes extends StatelessWidget {
         ],
       ),
       body: Container(
-        color: Color(0xFF222121),
+        color: const Color(0xFF222121),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -535,16 +535,16 @@ class Termes extends StatelessWidget {
                   height: 20,
                 ),
               ),
-              SizedBox(height: 16.0),
-              Text(
+              const SizedBox(height: 16.0),
+              const Text(
                 'Termes et Conditions',
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8.0),
-              Text(
+              const SizedBox(height: 8.0),
+              const Text(
                 "Bienvenue sur Musik, la plateforme de streaming musical en ligne. En accédant à notre application, vous acceptez nos conditions générales, notamment l'obligation de respecter les droits de propriété intellectuelle du contenu musical, de maintenir la confidentialité de votre compte, et de garantir la légitimité du contenu soumis. Les paiements et abonnements sont sujets à des conditions spécifiques, et toute violation de ces règles peut entraîner la résiliation de l'accès à l'application. Nous collectons et utilisons vos informations conformément à notre politique de confidentialité. Nous nous réservons le droit de modifier ces conditions à tout moment, et toute utilisation continue de l'application après de telles modifications constitue votre acceptation des termes révisés.",
                 style: TextStyle(
                   fontSize: 14.0,

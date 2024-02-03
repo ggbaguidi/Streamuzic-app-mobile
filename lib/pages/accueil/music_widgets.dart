@@ -220,3 +220,146 @@ class ArtistItem extends StatelessWidget {
         ));
   }
 }
+
+class Search extends StatefulWidget {
+  const Search({Key? key}) : super(key: key);
+
+  @override
+  _SearchState createState() => _SearchState();
+}
+
+class _SearchState extends State<Search> {
+  final TextEditingController _searchController = TextEditingController();
+  final List<String> _previousSearches = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Recherche',
+          style: TextStyle(
+            color: Color(0xFFEC0048),
+            fontWeight: FontWeight.bold,
+            fontSize: 20.0,
+          ),
+        ),
+        centerTitle: true,
+        actions: [
+          Builder(
+            builder: (context) => IconButton(
+              icon: Image.asset('assets/images/user_profil.png'),
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            ),
+          ),
+        ],
+      ),
+      body: Container(
+        color: const Color(0xFF222121),
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: _searchController,
+                    decoration: InputDecoration(
+                      hintText:
+                          'Rechercher des artistes, des chansons, des albums, des listes de lecture',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      filled: true,
+                      fillColor: Colors.white, // Fond gris clair
+                    ),
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.search),
+                  onPressed: () {
+                    // Ajouter la recherche actuelle à la liste des recherches précédentes
+                    String currentSearch = _searchController.text.trim();
+                    if (currentSearch.isNotEmpty) {
+                      setState(() {
+                        _previousSearches.add(currentSearch);
+                      });
+                    }
+                    // Ajoutez ici le code pour effectuer la recherche
+                  },
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            // Liste des recherches précédentes
+            if (_previousSearches.isNotEmpty)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Recherches précédentes',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                  const SizedBox(height: 8),
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: _previousSearches.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        title: Text(_previousSearches[index]),
+                        onTap: () {
+                          // Ajoutez ici le code pour traiter la recherche précédente sélectionnée
+                        },
+                      );
+                    },
+                  ),
+                ],
+              ),
+            // Liste des résultats de recherche récents
+            const Text(
+              'Récents',
+              style: TextStyle(fontSize: 18),
+            ),
+            const ListTile(
+              tileColor: Colors.white,
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage('https://i.pravatar.com/180'),
+              ),
+              title: Text(
+                'Justin Bieber',
+                style: TextStyle(color: Colors.white),
+              ),
+              subtitle: Text(
+                'Say my name',
+                style: TextStyle(color: Colors.white),
+              ),
+              trailing: Text(
+                'Before you',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+            const ListTile(
+              tileColor: Colors.white,
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage('https://i.pravatar.com/180'),
+              ),
+              title: Text(
+                'Rihanna',
+                style: TextStyle(color: Colors.white),
+              ),
+              subtitle: Text(
+                'Diamonds',
+                style: TextStyle(color: Colors.white),
+              ),
+              trailing: Text(
+                'Before you',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
