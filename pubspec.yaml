@@ -24,6 +24,7 @@ dependencies:
   http: ^1.2.0
   like_button: ^2.0.5
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
