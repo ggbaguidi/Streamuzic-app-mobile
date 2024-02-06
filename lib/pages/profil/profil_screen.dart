@@ -434,6 +434,7 @@ class Apropos extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: backgroundColor,
         title: const Text(
           'A propos',
           style: TextStyle(
@@ -506,6 +507,7 @@ class Termes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: backgroundColor,
         title: const Text(
           'Termes et Conditions',
           style: TextStyle(

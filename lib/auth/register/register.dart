@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
+import 'package:musik/api/url.dart';
 import 'package:musik/pages/choix_categories.dart';
 import 'package:musik/utils/colors.dart';
+import 'package:http/http.dart' as http;
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -12,10 +16,67 @@ class Register extends StatefulWidget {
 
 class _Register extends State<Register> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _username = TextEditingController();
-  final TextEditingController _email = TextEditingController();
-  final TextEditingController _password = TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmedPassword = TextEditingController();
+  bool _isLoading = false;
+
+  Future<void> _register() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    final String username = _usernameController.text.trim();
+    final String email = _emailController.text.trim();
+    final String password = _passwordController.text.trim();
+
+    // Make a POST request to your backend API to authenticate the user
+    final response = await http.post(
+      Uri.https(baseUrl, "$basePath/register"),
+      body: {
+        'username': username,
+        'email': email,
+        'password': password,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      // Successful login
+
+      // Extract the token from the response body
+      var message = jsonDecode(response.body)['message'];
+      print(message);
+
+      // Decode the token to get the user information
+      //final Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
+
+      // Navigate to the home screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const ChoixCategories()),
+      );
+    } else {
+      // Failed login
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: buttonColor,
+          content: const Text('Email déjà là, pas besoin de vous inscrire à nouveau.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +128,7 @@ class _Register extends State<Register> {
                     Padding(
                       padding: const EdgeInsets.only(left: 60, right: 50),
                       child: TextFormField(
-                        controller: _username,
+                        controller: _usernameController,
                         validator: ValidationBuilder()
                             .minLength(3, 'Au moins 3 caractères')
                             .build(),
@@ -98,7 +159,7 @@ class _Register extends State<Register> {
                     Padding(
                       padding: const EdgeInsets.only(left: 60, right: 50),
                       child: TextFormField(
-                        controller: _email,
+                        controller: _emailController,
                         validator: ValidationBuilder()
                             .email('Email incorrect')
                             .build(),
@@ -129,7 +190,7 @@ class _Register extends State<Register> {
                       padding: const EdgeInsets.only(left: 60, right: 50),
                       child: TextFormField(
                         obscureText: true,
-                        controller: _password,
+                        controller: _passwordController,
                         validator: ValidationBuilder()
                             .regExp(
                                 RegExp(
@@ -172,7 +233,7 @@ actère, spécial(@?.)''')
                           if (val == null || val == "") {
                             return 'Est vide';
                           }
-                          if (val != _password.text) {
+                          if (val != _passwordController.text) {
                             return 'Mot de passe incorrect';
                           }
                           return null;
@@ -195,18 +256,17 @@ actère, spécial(@?.)''')
                     Center(
                       child: ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const ChoixCategories()));
-                          }
-                        },
+                        if (_formKey.currentState != null &&
+                            _formKey.currentState!.validate()) {
+                          _register();
+                        }
+                      },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: buttonColor,
                         ),
-                        child: const Padding(
+                        child: _isLoading
+                          ? const CircularProgressIndicator(color: Colors.white,)
+                          : const Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: 50.0, vertical: 12.0),
                           child: Text(

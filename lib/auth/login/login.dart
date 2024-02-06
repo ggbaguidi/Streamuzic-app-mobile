@@ -1,7 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
+import 'package:musik/api/url.dart';
 import 'package:musik/pages/accueil/accueil_screens.dart';
 import 'package:musik/utils/colors.dart';
+import 'package:http/http.dart' as http;
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -12,8 +18,65 @@ class Login extends StatefulWidget {
 
 class _Login extends State<Login> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _email = TextEditingController();
-  final TextEditingController _password = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
+
+  Future<void> _login() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    final String email = _emailController.text.trim();
+    final String password = _passwordController.text.trim();
+
+    // Make a POST request to your backend API to authenticate the user
+    final response = await http.post(
+      Uri.https(baseUrl, "$basePath/login"),
+      body: {
+        'email': email,
+        'password': password,
+      },
+    );
+
+    if (response.statusCode == 200) {
+      // Successful login
+
+      // Extract the token from the response body
+      var token = jsonDecode(response.body)['token'];
+      var payload = json.decode(
+          ascii.decode(base64.decode(base64.normalize(token.split(".")[1]))));
+      print(payload);
+
+      // Decode the token to get the user information
+      //final Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
+
+      // Navigate to the home screen
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const AccueilHomePage()),
+      );
+    } else {
+      // Failed login
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: buttonColor,
+          content: const Text('Email ou mot de passe incorrect'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +162,7 @@ class _Login extends State<Login> {
                   Padding(
                     padding: const EdgeInsets.only(left: 60, right: 50),
                     child: TextFormField(
-                      controller: _email,
+                      controller: _emailController,
                       validator:
                           ValidationBuilder().email('Email incorrect').build(),
                       decoration: InputDecoration(
@@ -128,7 +191,7 @@ class _Login extends State<Login> {
                   Padding(
                     padding: const EdgeInsets.only(left: 60, right: 50),
                     child: TextFormField(
-                      controller: _password,
+                      controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                           hintText: 'Entrez votre mot de passe',
@@ -147,25 +210,25 @@ class _Login extends State<Login> {
                   Center(
                     child: ElevatedButton(
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const AccueilHomePage()));
+                        if (_formKey.currentState != null &&
+                            _formKey.currentState!.validate()) {
+                          _login();
                         }
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: buttonColor,
                       ),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: 30.0, vertical: 12.0),
-                        child: Text(
-                          'Se connecter',
-                          style: TextStyle(fontSize: 20, color: Colors.white),
-                        ),
-                      ),
+                      child: _isLoading
+                          ? const CircularProgressIndicator(color: Colors.white,)
+                          : const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 30.0, vertical: 12.0),
+                              child: Text(
+                                'Se connecter',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
+                              ),
+                            ),
                     ),
                   ),
                   const SizedBox(
