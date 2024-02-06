@@ -43,7 +43,7 @@ class _Register extends State<Register> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                height: 700,
+                height: 800,
                 decoration: const BoxDecoration(
                   color: formColor,
                   borderRadius: BorderRadius.only(
@@ -100,7 +100,7 @@ class _Register extends State<Register> {
                       child: TextFormField(
                         controller: _email,
                         validator: ValidationBuilder()
-                            .email('email incorrect')
+                            .email('Email incorrect')
                             .build(),
                         decoration: InputDecoration(
                             hintText: 'Entrez votre email',
@@ -134,7 +134,11 @@ class _Register extends State<Register> {
                             .regExp(
                                 RegExp(
                                     r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$'),
-                                'Mot de passe incorrect')
+                                '''Au moins un mot de passe
+de 8 caractères, une lettre
+magiscule, une lettre mini-
+scule,un chiffre et un car-
+actère, spécial(@?.)''')
                             .build(),
                         decoration: InputDecoration(
                             hintText: 'Entrez votre mot de passe',
@@ -169,7 +173,7 @@ class _Register extends State<Register> {
                             return 'Est vide';
                           }
                           if (val != _password.text) {
-                            return 'Incorrect';
+                            return 'Mot de passe incorrect';
                           }
                           return null;
                         },

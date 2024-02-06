@@ -101,7 +101,7 @@ class _Login extends State<Login> {
                     child: TextFormField(
                       controller: _email,
                       validator:
-                          ValidationBuilder().email('email incorrect').build(),
+                          ValidationBuilder().email('Email incorrect').build(),
                       decoration: InputDecoration(
                           hintText: 'Entrez votre email',
                           errorStyle: const TextStyle(fontSize: 18.0),
