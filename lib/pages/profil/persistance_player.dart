@@ -13,7 +13,7 @@ class PersistentPlayerBar extends StatefulWidget {
 class _PersistentPlayerBar extends State<PersistentPlayerBar> {
   _PersistentPlayerBar();
   bool loaded = true;
-  bool playing = false;
+  bool playing = true;
 
   @override
   Widget build(BuildContext context) {

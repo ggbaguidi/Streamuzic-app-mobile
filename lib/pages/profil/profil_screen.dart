@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:musik/pages/accueil/accueil_screens.dart';
 import 'package:musik/utils/colors.dart';
 
 class Bibliotheque extends StatelessWidget {
@@ -34,6 +35,7 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: backgroundColor,
         title: const Text(
           'Paramètres',
           style: TextStyle(
@@ -102,6 +104,7 @@ class Settings extends StatelessWidget {
           ],
         ),
       ),
+      endDrawer: const MyDrawerProfile(),
     );
   }
 }
@@ -113,6 +116,7 @@ class Help extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: backgroundColor,
         title: const Text(
           'Aide Musique',
           style: TextStyle(
@@ -245,7 +249,7 @@ class UpdateProfil extends StatefulWidget {
   const UpdateProfil({Key? key}) : super(key: key);
 
   @override
-  _UpdateProfilState createState() => _UpdateProfilState();
+  State<UpdateProfil> createState() => _UpdateProfilState();
 }
 
 class _UpdateProfilState extends State<UpdateProfil> {
@@ -263,6 +267,7 @@ class _UpdateProfilState extends State<UpdateProfil> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: backgroundColor,
         title: const Text(
           "Modifier le profil",
           style: TextStyle(
@@ -639,6 +644,18 @@ class MyDrawerProfile extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text(
+              'Accueil',
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const AccueilHomePage()),
+              );
+            },
           ),
           ListTile(
             leading: const Icon(IconData(0xe800)),
