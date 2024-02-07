@@ -12,6 +12,11 @@
 
 [CONTRIBUTING.md](CONTRIBUTING.md)
 
+## Acknowledgments
+
+- [Marquette](https://www.figma.com/file/yU4f5wiiEmJoJp6bn8D1Oj/Streamusik?type=design&node-id=0-1&mode=design&t=5ffuQDmWEz8KUpFt-0)
+- [Backend API documentation](https://documenter.getpostman.com/view/15632620/UVeAuowo#a8e566a3-ba1c-461d-80e9-59401c747e1f)
+
 ## GUIDE D'UTILISATION DE L'APPLICATION MUSIK
 
 ### OUVERTURE DE L'APPLICATION
@@ -75,7 +80,3 @@ Explorez ces sections pour découvrir de nouvelles musiques et personnaliser vot
 
 This project is licensed under the [MIT License](LICENSE).
 
-## Acknowledgments
-
-- [Marquette](https://www.figma.com/file/yU4f5wiiEmJoJp6bn8D1Oj/Streamusik?type=design&node-id=0-1&mode=design&t=5ffuQDmWEz8KUpFt-0)
-- [Backend API documentation](https://documenter.getpostman.com/view/15632620/UVeAuowo#a8e566a3-ba1c-461d-80e9-59401c747e1f)
