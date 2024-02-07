@@ -48,11 +48,22 @@ class _AccueilHomePage extends State<AccueilHomePage> {
     setState(() {
       _selectedIndex = index;
     });
-
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const AccueilHomePage()),
+      );
+    }
     if (index == 1) {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const Search()),
+      );
+    }
+    if (index == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Bibliotheque()),
       );
     }
   }
@@ -83,77 +94,77 @@ class _AccueilHomePage extends State<AccueilHomePage> {
       body: users == null && songs == null
           ? const Center(child: CircularProgressIndicator())
           : Stack(
-            children: [
-              SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, left: 20),
-                    child: Container(
-                      alignment: Alignment.topLeft,
-                      child: Column(
-                        children: [
-                          Image.asset(
-                            'assets/images/logo.png',
-                            fit: BoxFit.contain,
-                            height: 20,
+              children: [
+                SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20, left: 20),
+                        child: Container(
+                          alignment: Alignment.topLeft,
+                          child: Column(
+                            children: [
+                              Image.asset(
+                                'assets/images/logo.png',
+                                fit: BoxFit.contain,
+                                height: 20,
+                              ),
+                            ],
                           ),
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+                      Align(
+                        alignment: Alignment.center,
+                        child: RichText(
+                          text: const TextSpan(
+                            style: TextStyle(fontSize: 24),
+                            children: [
+                              TextSpan(
+                                text: 'Hello ',
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              TextSpan(
+                                text: 'John Doe',
+                                style: TextStyle(
+                                  color: buttonColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      _buildSectionHeader(),
+                      const SizedBox(height: 12),
+                      const TrendWidget(
+                        imageUrls: [
+                          'assets/images/Rectangle 17.png',
+                          'assets/images/Rectangle 19.png',
                         ],
                       ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  Align(
-                    alignment: Alignment.center,
-                    child: RichText(
-                      text: const TextSpan(
-                        style: TextStyle(fontSize: 24),
-                        children: [
-                          TextSpan(
-                            text: 'Hello ',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          TextSpan(
-                            text: 'John Doe',
-                            style: TextStyle(
-                              color: buttonColor,
-                            ),
-                          ),
-                        ],
+                      // Ajoutez une description si nécessaire
+                      AlbumWidget(
+                        songs: songs!,
                       ),
-                    ),
-                  ),
-                  _buildSectionHeader(),
-                  const SizedBox(height: 12),
-                  const TrendWidget(
-                    imageUrls: [
-                      'assets/images/Rectangle 17.png',
-                      'assets/images/Rectangle 19.png',
+                      const SizedBox(height: 16),
+                      // Ajoutez une description si nécessaire
+                      ArtistWidget(
+                        users: users!,
+                      ),
+                      // Ajoutez une description si nécessaire
+                      const SizedBox(height: 16),
                     ],
                   ),
-                  // Ajoutez une description si nécessaire
-                  AlbumWidget(
-                    songs: songs!,
-                  ),
-                  const SizedBox(height: 16),
-                  // Ajoutez une description si nécessaire
-                  ArtistWidget(
-                    users: users!,
-                  ),
-                  // Ajoutez une description si nécessaire
-                  const SizedBox(height: 16),
-                ],
-              ),
+                ),
+                const Positioned(
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: PersistentPlayerBar(),
+                ),
+              ],
             ),
-            const Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: PersistentPlayerBar(),
-            ),
-            ],
-          ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(

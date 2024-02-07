@@ -1,14 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:musik/pages/accueil/accueil_screens.dart';
+import 'package:musik/pages/profil/bibliotheque.dart';
 import 'package:musik/utils/colors.dart';
 
 class Bibliotheque extends StatelessWidget {
-  const Bibliotheque({super.key});
+  const Bibliotheque({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Page One"),
+        backgroundColor: backgroundColor,
+        title: const Text(
+          'Bibliothèque',
+          style: TextStyle(
+            color: Color(0xFFEC0048),
+            fontWeight: FontWeight.bold,
+            fontSize: 20.0,
+          ),
+        ),
+        centerTitle: true,
         actions: [
           Builder(
             builder: (context) => IconButton(
@@ -19,8 +30,78 @@ class Bibliotheque extends StatelessWidget {
           ),
         ],
       ),
-      body: const Center(
-        child: Text('Demo: Page One'),
+      body: Container(
+        color: const Color(0xFF222121),
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              alignment: Alignment.topLeft,
+              child: Image.asset(
+                'assets/images/logo.png',
+                fit: BoxFit.contain,
+                height: 20,
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            ListTile(
+              leading: Icon(
+                Icons.save,
+                color: Color(0xFFEC0048),
+              ),
+              title: const Text(
+                'Sauvegarde',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                      builder: (context) => const SauvegardePage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.favorite,
+                color: Color(0xFFEC0048),
+              ),
+              title: const Text(
+                'Likes',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const LikesPage()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.playlist_play,
+                color: Color(0xFFEC0048),
+              ),
+              title: const Text(
+                'Playlists',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const Playlist()),
+                );
+              },
+            ),
+          ],
+        ),
       ),
       endDrawer: const MyDrawerProfile(),
     );
@@ -34,6 +115,7 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: backgroundColor,
         title: const Text(
           'Paramètres',
           style: TextStyle(
@@ -102,6 +184,7 @@ class Settings extends StatelessWidget {
           ],
         ),
       ),
+      endDrawer: const MyDrawerProfile(),
     );
   }
 }
@@ -113,6 +196,7 @@ class Help extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: backgroundColor,
         title: const Text(
           'Aide Musique',
           style: TextStyle(
@@ -182,8 +266,7 @@ class Help extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding:
-                EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+            padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
             child: Text(
               "Pour écouter une chanson sur notre application, il vous suffit de rechercher le titre, l'artiste ou l'album souhaité dans la barre de recherche. Une fois la chanson trouvée, appuyez simplement sur le bouton de lecture. Vous pouvez également explorer nos playlists recommandées ou créer la vôtre. Profitez de la musique en continu, et n'oubliez pas de consulter les options de personnalisation disponibles pour une expérience encore plus enrichissante.",
               style: TextStyle(
@@ -203,8 +286,7 @@ class Help extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding:
-                EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+            padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
             child: Text(
               "Personnalisez votre expérience musicale en créant vos propres playlists. Accédez à la section <Playlists> de l'application, appuyez sur 'Créer une playlist', donnez-lui un nom et ajoutez vos chansons préférées. Vous pouvez réorganiser l'ordre des chansons et même partager vos playlists avec d'autres utilisateurs. Créez des ambiances uniques pour différentes occasions et découvrez de nouvelles façons de profiter de votre musique préférée.",
               style: TextStyle(
@@ -224,8 +306,7 @@ class Help extends StatelessWidget {
             ),
           ),
           const Padding(
-            padding:
-                EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
+            padding: EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16.0),
             child: Text(
               "Bien sûr ! Partager vos découvertes musicales avec vos amis est simple. Lorsque vous écoutez une chanson que vous aimez, recherchez l'option de partage et choisissez la plateforme de votre choix. Que ce soit par message, e-mail ou sur les réseaux sociaux, propagez la bonne musique et faites découvrir à vos amis de nouveaux morceaux. La musique est faite pour être partagée, et notre application facilite ce processus.",
               style: TextStyle(
@@ -245,7 +326,7 @@ class UpdateProfil extends StatefulWidget {
   const UpdateProfil({Key? key}) : super(key: key);
 
   @override
-  _UpdateProfilState createState() => _UpdateProfilState();
+  State<UpdateProfil> createState() => _UpdateProfilState();
 }
 
 class _UpdateProfilState extends State<UpdateProfil> {
@@ -263,6 +344,7 @@ class _UpdateProfilState extends State<UpdateProfil> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: backgroundColor,
         title: const Text(
           "Modifier le profil",
           style: TextStyle(
@@ -429,6 +511,7 @@ class Apropos extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: backgroundColor,
         title: const Text(
           'A propos',
           style: TextStyle(
@@ -501,6 +584,7 @@ class Termes extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: backgroundColor,
         title: const Text(
           'Termes et Conditions',
           style: TextStyle(
@@ -639,6 +723,19 @@ class MyDrawerProfile extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.home),
+            title: const Text(
+              'Accueil',
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                    builder: (context) => const AccueilHomePage()),
+              );
+            },
           ),
           ListTile(
             leading: const Icon(IconData(0xe800)),
