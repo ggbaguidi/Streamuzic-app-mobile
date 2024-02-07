@@ -5,6 +5,7 @@ import 'package:musik/pages/accueil/music_widgets.dart';
 import 'package:musik/pages/profil/persistance_player.dart';
 import 'package:musik/pages/profil/profil_screen.dart';
 import 'package:musik/repositories/get_home_page.dart';
+import 'package:musik/repositories/get_songs_by_username.dart';
 import 'package:musik/utils/colors.dart';
 
 class AccueilHomePage extends StatefulWidget {
@@ -17,8 +18,10 @@ class AccueilHomePage extends StatefulWidget {
 class _AccueilHomePage extends State<AccueilHomePage> {
   _AccueilHomePage();
   final GetHomePage getHomePage = GetHomePage();
+  final GetSongsByUsername getSongsByUsername = GetSongsByUsername();
   List<User>? users;
   List<SongModel>? songs;
+  List<SongModel>? songtrends;
 
   @override
   void initState() {
@@ -31,10 +34,12 @@ class _AccueilHomePage extends State<AccueilHomePage> {
       // Fetch user data
       final users_ = await getHomePage.getUsers();
       final songs_ = await getHomePage.getSongs();
+      final songtrends_ = await getSongsByUsername.getSongsByUsername("SergeQuadrado");
 
       setState(() {
         users = users_;
         songs = songs_;
+        songtrends = songtrends_;
       });
     } catch (error) {
       print('Error fetching data: $error');
@@ -137,11 +142,8 @@ class _AccueilHomePage extends State<AccueilHomePage> {
                       ),
                       _buildSectionHeader(),
                       const SizedBox(height: 12),
-                      const TrendWidget(
-                        imageUrls: [
-                          'assets/images/Rectangle 17.png',
-                          'assets/images/Rectangle 19.png',
-                        ],
+                      TrendWidget(
+                        songs: songtrends!,
                       ),
                       // Ajoutez une description si nécessaire
                       AlbumWidget(

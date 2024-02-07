@@ -34,21 +34,21 @@ class Playlist extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(
+            const Icon(
               Icons.save,
               color: Color(0xFFEC0048),
             ),
-            Text(
+            const Text(
               'Votre playlist est vide',
               style: TextStyle(
                 fontSize: 15.0,
                 color: Colors.white,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {},
-              child: Text('Créer une playlist'),
+              child: const Text('Créer une playlist'),
             ),
           ],
         ),
@@ -91,13 +91,13 @@ class SauvegardePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             _buildSauvegardeItem(
               'Bloody samarita',
               'Ayrastart',
               'assets/images/Rectangle 19.png',
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             _buildSauvegardeItem(
               'Praise',
               'Elevation worship',
@@ -134,22 +134,22 @@ class SauvegardePage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(width: 16.0),
+            const SizedBox(width: 16.0),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   title,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 15.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 8.0),
+                const SizedBox(height: 8.0),
                 Text(
                   description,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 13.0,
                   ),
@@ -197,13 +197,13 @@ class LikesPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             _buildLikesItem(
               'Bloody samarita',
               'Ayrastart',
               'assets/images/Rectangle 19.png',
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             _buildLikesItem(
               'Praise',
               'Elevation worship',
@@ -240,30 +240,30 @@ Widget _buildLikesItem(String title, String description, String imagePath) {
               ),
             ),
           ),
-          SizedBox(width: 16.0),
+          const SizedBox(width: 16.0),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 15.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               Text(
                 description,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 13.0,
                 ),
               ),
             ],
           ),
-          Spacer(),
-          Icon(
+          const Spacer(),
+          const Icon(
             Icons.favorite,
             color: Color(0xFFEC0048),
           ),

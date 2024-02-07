@@ -46,7 +46,7 @@ class Bibliotheque extends StatelessWidget {
             ),
             const SizedBox(height: 20.0),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.save,
                 color: Color(0xFFEC0048),
               ),
@@ -65,7 +65,7 @@ class Bibliotheque extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.favorite,
                 color: Color(0xFFEC0048),
               ),
@@ -83,7 +83,7 @@ class Bibliotheque extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.playlist_play,
                 color: Color(0xFFEC0048),
               ),

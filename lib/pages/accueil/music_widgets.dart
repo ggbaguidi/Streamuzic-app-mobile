@@ -5,9 +5,9 @@ import 'package:musik/pages/player_screen.dart';
 import 'package:musik/utils/colors.dart';
 
 class TrendWidget extends StatelessWidget {
-  final List<String> imageUrls;
+  final List<SongModel> songs;
 
-  const TrendWidget({super.key, required this.imageUrls});
+  const TrendWidget({super.key, required this.songs});
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +30,9 @@ class TrendWidget extends StatelessWidget {
           height: 200,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: imageUrls.length,
+            itemCount: songs.length,
             itemBuilder: (context, index) {
-              return TrendItem(imageUrl: imageUrls[index]);
+              return TrendItem(song: songs[index]);
             },
           ),
         ),
@@ -118,15 +118,19 @@ class ArtistWidget extends StatelessWidget {
 }
 
 class TrendItem extends StatelessWidget {
-  final String imageUrl;
+  final SongModel song;
 
-  const TrendItem({super.key, required this.imageUrl});
+  const TrendItem({super.key, required this.song});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         // Gérer le clic sur l'image tendance
+        Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => PlayerScreen(song: song)));
       },
       child: Container(
         width: 150,
@@ -135,7 +139,7 @@ class TrendItem extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           image: DecorationImage(
-            image: AssetImage(imageUrl),
+            image: NetworkImage(song.coverImageUrl!),
             fit: BoxFit.cover,
           ),
         ),
